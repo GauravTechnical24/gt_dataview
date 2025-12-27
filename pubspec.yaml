@@ -1,0 +1,26 @@
+name: gt_dataview
+description: High-performance Flutter list and grid view package with zero-rebuild optimization, pagination support, and ChangeNotifier-based state management.
+version: 1.0.0
+homepage: https://github.com/GauravTechnical24/gt_dataview.git
+repository: https://github.com/GauravTechnical24/gt_dataview.git
+issue_tracker: https://github.com/GauravTechnical24/gt_dataview/issues
+
+topics:
+  - listview
+  - gridview
+  - pagination
+  - performance
+  - widgets
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
