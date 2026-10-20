@@ -3,19 +3,37 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gt_dataview_example/main.dart';
 
 void main() {
-  testWidgets('DataViewExampleScreen displays correctly', (
-    WidgetTester tester,
-  ) async {
-    // Build the app
-    await tester.pumpWidget(const MyApp());
+  testWidgets(
+    'GTDataViewExampleApp renders and handles view & theme toggling',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(const GTDataViewExampleApp());
+      await tester.pumpAndSettle();
 
-    // Verify that the app title contains GT DataView
-    expect(find.textContaining('GT DataView'), findsOneWidget);
+      // Verify title and item count header
+      expect(find.text('GT DataView'), findsOneWidget);
+      expect(find.textContaining('live items'), findsOneWidget);
 
-    // Verify toggle button is present
-    expect(find.byIcon(Icons.grid_view), findsOneWidget);
+      // Verify presence of modern action buttons
+      expect(find.byIcon(Icons.grid_view_outlined), findsOneWidget);
+      expect(find.byIcon(Icons.dark_mode_outlined), findsOneWidget);
 
-    // Verify refresh button is present
-    expect(find.byIcon(Icons.refresh), findsOneWidget);
-  });
+      // Toggle grid view
+      await tester.tap(find.byIcon(Icons.grid_view_outlined));
+      await tester.pumpAndSettle();
+
+      expect(find.byIcon(Icons.view_agenda_outlined), findsOneWidget);
+
+      // Toggle theme to dark mode
+      await tester.tap(find.byIcon(Icons.dark_mode_outlined));
+      await tester.pumpAndSettle();
+
+      expect(find.byIcon(Icons.light_mode), findsOneWidget);
+
+      // Switch to Cupertino view
+      await tester.tap(find.byIcon(Icons.phone_iphone_outlined));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('GT DataView (20)'), findsOneWidget);
+    },
+  );
 }
